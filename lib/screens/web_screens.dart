@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebScreen extends StatefulWidget {
@@ -42,15 +44,23 @@ class _WebScreenState extends State<WebScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text("QR Scanner"),
-        leading: IconButton(
-          color: Colors.white,
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: Text(
+          'app_name'.tr,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.toNamed('/setting');
+              },
+              icon: const Icon(
+                CupertinoIcons.settings,
+                color: Colors.white,
+              ))
+        ],
       ),
       body: Stack(
         children: [
